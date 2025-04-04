@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+HelperCryptography.Initialize(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
 HelperActionServicesOAuth helper = new HelperActionServicesOAuth(builder.Configuration);
 builder.Services.AddSingleton<HelperActionServicesOAuth>(helper);
 builder.Services.AddAuthentication(helper.GetAuthenticateSchema())
